@@ -23,6 +23,13 @@ export class ModalService {
   //console.log(this.modals)
   }
 
+  unregister(id:string){
+    this.modals = this.modals.filter(
+      x => x.id !== id
+    );
+    
+  }
+
   isModalOpen(id:string) : boolean{
     return Boolean(this.modals.find(x => x.id === id)?.visible);
   }
