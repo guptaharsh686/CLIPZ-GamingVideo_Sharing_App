@@ -11,12 +11,12 @@ export class InputComponent {
   control : FormControl = new FormControl();
 
   @Input()
-  type : string = 'text';
+  type = 'text';
 
   @Input()
-  placeholder:string = '';
+  placeholder = '';
 
   @Input()
-  format = ''
+  format = '';
 
 }

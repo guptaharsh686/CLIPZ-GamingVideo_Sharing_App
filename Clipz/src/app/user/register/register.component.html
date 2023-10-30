@@ -1,5 +1,5 @@
 <!-- Registration Form -->
-<form [formGroup]="registerForm">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
     <!-- Name -->
     <div class="mb-3">
         <label class="inline-block mb-2">Name</label>
@@ -13,7 +13,7 @@
     <!-- Age -->
     <div formControlName="age" class="mb-3">
         <label class="inline-block mb-2">Age</label>
-        <app-input [control]="age" type="Number" placeholder="Enter Age"></app-input>
+        <app-input [control]="age" placeholder="Enter Age"></app-input>
     </div>
     <!-- Password -->
     <div formControlName="password" class="mb-3">
