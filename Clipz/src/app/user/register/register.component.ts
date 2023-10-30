@@ -43,6 +43,15 @@ export class RegisterComponent {
   });
 
   register(){
-    console.log("submit done");
+    //console.log("submit done");
+    this.showAlert = true;
+    this.alertMsg = 'Please wait your account is being created.';
+    this.alertColor = 'blue';
   }
+
+  showAlert = false;
+  alertMsg = 'Please wait your account is being created.';
+  alertColor = 'blue';
+
+
 }
