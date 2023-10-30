@@ -16,4 +16,7 @@ export class InputComponent {
   @Input()
   placeholder:string = '';
 
+  @Input()
+  format = ''
+
 }
