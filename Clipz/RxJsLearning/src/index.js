@@ -1,35 +1,14 @@
-import { Observable, } from "rxjs";
+import { timer } from "rxjs";
 
-const observable = new Observable((sub)=> {
-    const id = setInterval( () => {
-        sub.next('test');
-        console.log('leak');
-    },1000);
-
-    // sub.complete();
-
-    return () => {
-    clearInterval(id);
-    }
-});
+const observable = timer(1000,1000)
 
 
 
-const subscription = observable.subscribe({
-    next: (value) => {
-       console.log(value)
-    },
-
-    complete: () => {
-        console.log("Complete");
-    },
-
-    error: (err) => {
-        console.error(err);
-    }
-})
+const subscription = observable.subscribe(
+    console.log
+)
 
 
-setTimeout(()=>{
-    subscription.unsubscribe()
-},4000);
+// setTimeout(()=>{
+//     subscription.unsubscribe()
+// },4000);
