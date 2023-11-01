@@ -1,4 +1,4 @@
-import { Observable } from "rxjs";
+import { Observable, } from "rxjs";
 
 const observable = new Observable((sub)=> {
     const id = setInterval( () => {
@@ -6,7 +6,7 @@ const observable = new Observable((sub)=> {
         console.log('leak');
     },1000);
 
-    sub.complete();
+    // sub.complete();
 
     return () => {
     clearInterval(id);
@@ -15,7 +15,7 @@ const observable = new Observable((sub)=> {
 
 
 
-observable.subscribe({
+const subscription = observable.subscribe({
     next: (value) => {
        console.log(value)
     },
@@ -28,3 +28,8 @@ observable.subscribe({
         console.error(err);
     }
 })
+
+
+setTimeout(()=>{
+    subscription.unsubscribe()
+},4000);
