@@ -9281,8 +9281,14 @@ var _zipWith = require("./internal/operators/zipWith");
 
 var _rxjs = require("rxjs");
 // const observable = of(1,2,3,4,5) // gives numbers as output
-var observable = (0, _rxjs.from)(fetch('https://jsonplaceholder.typicode.com/todos/1')); //gives single array as output
-
+var observable = (0, _rxjs.of)(1, 2, 3, 4, 5);
+var withSymbol = observable.pipe((0, _rxjs.map)(function (value) {
+  return "$".concat(value);
+})).subscribe({
+  next: function next() {
+    console.log('symbol');
+  }
+});
 var subscription = observable.subscribe({
   next: function next(value) {
     console.log(value);

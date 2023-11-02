@@ -1,7 +1,15 @@
-import { of,from } from "rxjs";
+import { map, of } from "rxjs";
 
 // const observable = of(1,2,3,4,5) // gives numbers as output
-const observable = from(fetch('https://jsonplaceholder.typicode.com/todos/1')) //gives single array as output
+const observable = of(1,2,3,4,5)
+
+var withSymbol = observable.pipe(
+    map((value) => `$${value}`)
+).subscribe({
+    next: () => {
+        console.log('symbol');
+    }
+})
 
 
 
