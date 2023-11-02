@@ -9280,8 +9280,17 @@ var _zipWith = require("./internal/operators/zipWith");
 "use strict";
 
 var _rxjs = require("rxjs");
-var observable = (0, _rxjs.fromEvent)(document, 'click');
-var subscription = observable.subscribe(console.log);
+// const observable = of(1,2,3,4,5) // gives numbers as output
+var observable = (0, _rxjs.from)(fetch('https://jsonplaceholder.typicode.com/todos/1')); //gives single array as output
+
+var subscription = observable.subscribe({
+  next: function next(value) {
+    console.log(value);
+  },
+  complete: function complete() {
+    console.log('complete');
+  }
+});
 
 // setTimeout(()=>{
 //     subscription.unsubscribe()
