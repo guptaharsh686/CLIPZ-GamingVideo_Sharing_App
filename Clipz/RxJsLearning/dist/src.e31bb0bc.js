@@ -9280,7 +9280,7 @@ var _zipWith = require("./internal/operators/zipWith");
 "use strict";
 
 var _rxjs = require("rxjs");
-var observable = (0, _rxjs.timer)(1000, 1000);
+var observable = (0, _rxjs.fromEvent)(document, 'click');
 var subscription = observable.subscribe(console.log);
 
 // setTimeout(()=>{
@@ -9311,7 +9311,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60592" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51503" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

@@ -1,6 +1,6 @@
-import { timer } from "rxjs";
+import { fromEvent } from "rxjs";
 
-const observable = timer(1000,1000)
+const observable = fromEvent(document,'click')
 
 
 
