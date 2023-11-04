@@ -9709,12 +9709,12 @@ var _rxjs = require("rxjs");
 var _ajax = require("rxjs/ajax");
 var button = document.querySelector('#btn');
 // const observable = of(1,2,3,4,5) // gives numbers as output
-var observable = (0, _rxjs.fromEvent)(button, 'click').pipe((0, _rxjs.map)(function () {
+var observable = (0, _rxjs.fromEvent)(button, 'click').pipe((0, _rxjs.mergeMap)(function () {
   return _ajax.ajax.getJSON('https://jsonplaceholder.typicode.com/todos/1');
 }));
 var subscription = observable.subscribe({
   next: function next(value) {
-    value.subscribe(console.log);
+    console.log(value);
   },
   complete: function complete() {
     console.log('complete');
