@@ -1,11 +1,10 @@
-import { of, fromEvent } from "rxjs";
-import {map,pluck,filter} from 'rxjs'
+import { of } from "rxjs";
+import {reduce} from 'rxjs'
 
 
 // const observable = of(1,2,3,4,5) // gives numbers as output
-const observable = fromEvent(document,'keydown').pipe(
-    pluck('code'),
-    filter(code => code === 'Space')
+const observable = of(1,2,3,4,5).pipe(
+    reduce((acc,value)=> acc+value, 0)
 )
 
 
