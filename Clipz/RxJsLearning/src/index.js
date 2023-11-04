@@ -1,15 +1,11 @@
-import { map, of } from "rxjs";
+import { of, fromEvent } from "rxjs";
+import {map,pluck} from 'rxjs'
+
 
 // const observable = of(1,2,3,4,5) // gives numbers as output
-const observable = of(1,2,3,4,5)
-
-var withSymbol = observable.pipe(
-    map((value) => `$${value}`)
-).subscribe({
-    next: () => {
-        console.log('symbol');
-    }
-})
+const observable = fromEvent(document,'keydown').pipe(
+    pluck('code')
+)
 
 
 
