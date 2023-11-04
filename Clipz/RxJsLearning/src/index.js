@@ -1,5 +1,5 @@
 import { fromEvent,interval } from "rxjs";
-import {map,mergeMap,take,tap} from 'rxjs'
+import {map,switchMap,take,tap} from 'rxjs'
 import {ajax} from 'rxjs/ajax'
 
 
@@ -8,10 +8,14 @@ var button = document.querySelector('#btn');
 const observable = fromEvent(
     button,'click'
 ).pipe(
-    mergeMap(() => {
+    switchMap(() => {
         return interval(1000).pipe(
-            tap(console.log),
-            take(5) //take plays a vital role in completion of observables
+            take(5), //take plays a vital role in completion of observables
+            tap({ //tap can accept object with OBSERVER LIKE functions
+                complete() {
+                    console.log('inner observer is completed')
+                }
+            }),
         )
     }),
 )

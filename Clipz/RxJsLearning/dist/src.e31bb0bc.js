@@ -9709,11 +9709,16 @@ var _rxjs = require("rxjs");
 var _ajax = require("rxjs/ajax");
 var button = document.querySelector('#btn');
 // const observable = of(1,2,3,4,5) // gives numbers as output
-var observable = (0, _rxjs.fromEvent)(button, 'click').pipe((0, _rxjs.mergeMap)(function () {
-  return (0, _rxjs.interval)(1000).pipe((0, _rxjs.tap)(console.log), (0, _rxjs.take)(5) //take plays a vital role in completion of observables
-  );
+var observable = (0, _rxjs.fromEvent)(button, 'click').pipe((0, _rxjs.switchMap)(function () {
+  return (0, _rxjs.interval)(1000).pipe((0, _rxjs.take)(5),
+  //take plays a vital role in completion of observables
+  (0, _rxjs.tap)({
+    //tap can accept object with OBSERVER LIKE functions
+    complete: function complete() {
+      console.log('inner observer is completed');
+    }
+  }));
 }));
-
 var subscription = observable.subscribe({
   next: function next(value) {
     console.log(value);
@@ -9751,7 +9756,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63416" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62132" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
