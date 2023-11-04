@@ -9281,7 +9281,9 @@ var _zipWith = require("./internal/operators/zipWith");
 
 var _rxjs = require("rxjs");
 // const observable = of(1,2,3,4,5) // gives numbers as output
-var observable = (0, _rxjs.fromEvent)(document, 'keydown').pipe((0, _rxjs.pluck)('code'));
+var observable = (0, _rxjs.fromEvent)(document, 'keydown').pipe((0, _rxjs.pluck)('code'), (0, _rxjs.filter)(function (code) {
+  return code === 'Space';
+}));
 var subscription = observable.subscribe({
   next: function next(value) {
     console.log(value);
