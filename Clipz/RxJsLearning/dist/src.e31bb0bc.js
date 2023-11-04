@@ -9709,7 +9709,7 @@ var _rxjs = require("rxjs");
 var _ajax = require("rxjs/ajax");
 var button = document.querySelector('#btn');
 // const observable = of(1,2,3,4,5) // gives numbers as output
-var observable = (0, _rxjs.fromEvent)(button, 'click').pipe((0, _rxjs.switchMap)(function () {
+var observable = (0, _rxjs.fromEvent)(button, 'click').pipe((0, _rxjs.concatMap)(function () {
   return _ajax.ajax.getJSON('https://jsonplaceholder.typicode.com/todos/1').pipe((0, _rxjs.take)(5),
   //take plays a vital role in completion of observables
   (0, _rxjs.tap)({
