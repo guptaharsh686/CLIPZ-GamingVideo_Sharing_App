@@ -8,7 +8,7 @@ var button = document.querySelector('#btn');
 const observable = fromEvent(
     button,'click'
 ).pipe(
-    exhaustMap(() => {
+    concatMap(() => {
         return ajax.getJSON('https://jsonplaceholder.typicode.com/todos/1').pipe(
             take(5), //take plays a vital role in completion of observables
             tap({ //tap can accept object with OBSERVER LIKE functions
@@ -26,7 +26,7 @@ const subscription = observable.subscribe({
        console.log(value)
     },
     complete: () => {
-        console.log('complete')
+        console.log('complete') 
     }
 })
 
