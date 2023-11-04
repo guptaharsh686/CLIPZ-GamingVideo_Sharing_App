@@ -9710,8 +9710,8 @@ var _ajax = require("rxjs/ajax");
 var button = document.querySelector('#btn');
 // const observable = of(1,2,3,4,5) // gives numbers as output
 var observable = (0, _rxjs.fromEvent)(button, 'click').pipe((0, _rxjs.mergeMap)(function () {
-  return (0, _rxjs.interval)(1000).pipe((0, _rxjs.tap)(console.log));
-}), (0, _rxjs.take)(5));
+  return (0, _rxjs.interval)(1000).pipe((0, _rxjs.tap)(console.log), (0, _rxjs.take)(5));
+}));
 var subscription = observable.subscribe({
   next: function next(value) {
     console.log(value);

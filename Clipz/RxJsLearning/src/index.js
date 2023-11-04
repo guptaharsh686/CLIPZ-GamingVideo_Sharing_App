@@ -10,10 +10,10 @@ const observable = fromEvent(
 ).pipe(
     mergeMap(() => {
         return interval(1000).pipe(
-            tap(console.log)
+            tap(console.log),
+            take(5)
         )
     }),
-    take(5)
 )
 
 
