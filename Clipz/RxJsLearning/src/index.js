@@ -11,7 +11,7 @@ const observable = fromEvent(
     mergeMap(() => {
         return interval(1000).pipe(
             tap(console.log),
-            take(5)
+            take(5) //take plays a vital role in completion of observables
         )
     }),
 )
