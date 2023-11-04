@@ -1,9 +1,11 @@
-import { of } from "rxjs";
-import {reduce} from 'rxjs'
+import { interval } from "rxjs";
+import {reduce,take,scan,tap} from 'rxjs'
 
 
 // const observable = of(1,2,3,4,5) // gives numbers as output
-const observable = of(1,2,3,4,5).pipe(
+const observable = interval(500).pipe(
+    tap(console.log),
+    take(5),
     reduce((acc,value)=> acc+value, 0)
 )
 
