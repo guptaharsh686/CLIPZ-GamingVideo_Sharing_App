@@ -1,0 +1,2 @@
+
+# Went to fireStore Database section and updated the access rules to allow read access to everyone and do not allow write if auth is null. 
