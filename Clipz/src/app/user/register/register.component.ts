@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms'
 import {AngularFireAuth} from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,10 @@ export class RegisterComponent {
 
   inSubmission = false;
 
-  constructor(private auth : AngularFireAuth){
+  constructor(
+    private auth : AngularFireAuth,
+    private db : AngularFirestore
+    ){
 
   }
 
@@ -63,8 +67,14 @@ export class RegisterComponent {
 
     try{
       const userCredential = await this.auth.createUserWithEmailAndPassword(email as string,password as string);
-      console.log(userCredential);
-
+      // console.log(userCredential);
+      //returns promise
+      await this.db.collection('users').add({
+        name: this.name.value,
+        email: this.email.value,
+        age: this.age.value,
+        phoneNumber : this.phoneNumber.value
+      })
     }
     catch(e){
       console.log(e);
