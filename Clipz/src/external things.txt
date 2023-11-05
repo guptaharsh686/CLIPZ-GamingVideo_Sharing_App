@@ -1,2 +1,4 @@
 
 # Went to fireStore Database section and updated the access rules to allow read access to everyone and do not allow write if auth is null. 
+
+#Managing the authentication via token of the user is automated via installed SDK it automatically sends tokens with each reqest.
