@@ -5,6 +5,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { Observable, delay, map } from 'rxjs';
 import IUser from 'src/app/Models/user.model';
 
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,8 @@ export class AuthService {
    
   constructor(
     private auth : AngularFireAuth,
-    private db : AngularFirestore
+    private db : AngularFirestore,
+    private router : Router
   ) {
     this.usersCollection = db.collection('users');
 
@@ -59,6 +62,17 @@ export class AuthService {
       await userCredential.user.updateProfile({
         displayName: userData.name
       })
+  }
+
+  public async logout($event? : Event){
+    if($event){
+      $event.preventDefault();
+    }
+    //clear credintials from storage and revoke the token
+    await this.auth.signOut();
+
+    //as method returns a promice we have to await it
+    await this.router.navigateByUrl('/');
   }
 
 }
